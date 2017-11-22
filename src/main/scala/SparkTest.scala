@@ -9,7 +9,7 @@ object SparkTest {
     val conf = new SparkConf().setAppName("chen-test")
     val sc = new SparkContext(conf)
     val rdd = sc.parallelize(Seq(1,2,3,4,5,6), 2).mapPartitions(p => {
-      System.loadLibrary("plus")
+      System.loadLibrary("plus_jni")
       val plusJNI = new PlusJNI
       p.map(plusJNI.plus(_, 10))
     })
